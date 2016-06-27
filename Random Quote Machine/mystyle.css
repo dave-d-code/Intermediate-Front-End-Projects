@@ -1,0 +1,12 @@
+
+body {
+	background: url('http://www.shauntmax30.com/data/out/9/996025-chuck-norris-background.jpg');
+	background-position: center center;
+	background-size: cover;
+}
+
+
+.jumbotron {
+	margin-top: 200px;
+	background-color: #ddff99;
+}

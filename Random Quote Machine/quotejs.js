@@ -20,12 +20,13 @@ $(function() {
 		});
 	});
 
+	$('#tweet-btn').on('click', function() {
+		var link = "https://twitter.com/intent/tweet?text=";
+		var quote = $('#inner_msg').html().replace(/[ ]/g, '%20');
+		$('#tweet-btn').attr({"href":link + quote, "target":"_blank"});
+	
+	});
+
 
 });
 
-
-// {"type":"success",
-// "value":{"id":422,
-// 		"joke":"Mr. T pities the fool. Chuck Norris rips the fool's head off.",
-// 		"categories":[]}
-// }
