@@ -50,13 +50,13 @@ function get_weather(lat, longit) {
 function change_temp(temp) {
 	if (is_celsius) {
 		var fahrenheit = (temp * 9/5) + 32;
-		$('#temp').html(fahrenheit + " ° Fahrenheit");
+		$('#temp').html(fahrenheit.toFixed(1) + " ° Fahrenheit");
 		$('#change').html('Click on temp to change to Celsius');
 		temperature = fahrenheit;
 		is_celsius = false;
 	} else {
 		var celsius = (temp - 32) * 5/9;
-		$('#temp').html(celsius + " ° Celsius");
+		$('#temp').html(celsius.toFixed(1) + " ° Celsius");
 		$('#change').html('Click on temp to change to Fahrenheit');
 		temperature = celsius;
 		is_celsius = true;
