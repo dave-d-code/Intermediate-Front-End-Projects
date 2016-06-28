@@ -42,7 +42,7 @@ function get_weather(lat, longit) {
 		$('#temp').html(json.main.temp + " ° Celsius"); // set the temp
 		temperature = json.main.temp;
 		var file = json.weather[0].icon.substring(0, 2); // use icon to set our own background jumbotron picture
-		var url = 'url(weather_images/' + file + '.jpg)';
+		var url = 'url(http://tropicalmoonlight.us/FCC/weather_images/' + file + '.jpg)';
 		$('#weather_bg').css('background-image', url);
 	});
 }
