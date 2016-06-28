@@ -4,30 +4,64 @@
 * 3. Use info in JSON api to load up images.
 * 4. Use info in JSON to toggle C to F. */
 
-var varDump;
+var is_celsius = true;
+var temperature;
+
 
 $(function() {
 
 	if (navigator.geolocation) {
   		navigator.geolocation.getCurrentPosition(function(position) {
-    		$("#my_position").html("latitude: " + position.coords.latitude + "<br>longitude: " + position.coords.longitude);
+    		get_weather(position.coords.latitude, position.coords.longitude);
   		});
+	} else {
+		$('#error').html('No location data.. No weather data dude!');
 	}
 
-	$.getJSON("http://api.openweathermap.org/data/2.5/weather?lat=42.13&lon=24.74&units=metric&APPID=d651d137bb54b8f84de822226f5f526d", function(json) {
-		varDump = json;
-		var html = json.weather[0].main;
-		var icon = json.weather[0].icon;
-		var temp = json.main.temp;
-		console.log(varDump);
-		$('#weather').append(html);
-		$('#weather-icon').attr("src", "http://openweathermap.org/img/w/" + icon + ".png");
-		$('#temp').append(temp);
-
+	$('#temp').click(function() {
+		change_temp(temperature);
 	});
 
 
+
+	
+
+
 });
+
+function get_weather(lat, longit) {
+	var lat_cords = "lat=" + String(lat).substring(0, 5);
+	var long_cords = "&lon=" + String(longit).substring(0, 5);
+	var http_string = "http://api.openweathermap.org/data/2.5/weather?" + lat_cords + long_cords + "&units=metric&APPID=d651d137bb54b8f84de822226f5f526d";
+
+	// make a JSON request to openweathermap.org
+	$.getJSON(http_string, function(json) {
+
+		$('#location').html(json.name); // set the location
+		$('#conditions').html(json.weather[0].description); // set the local weather
+		$('#temp').html(json.main.temp + " ° Celsius"); // set the temp
+		temperature = json.main.temp;
+		var file = json.weather[0].icon.substring(0, 2); // use icon to set our own background jumbotron picture
+		var url = 'url(weather_images/' + file + '.jpg)';
+		$('#weather_bg').css('background-image', url);
+	});
+}
+
+function change_temp(temp) {
+	if (is_celsius) {
+		var fahrenheit = (temp * 9/5) + 32;
+		$('#temp').html(fahrenheit + " ° Fahrenheit");
+		$('#change').html('Click on temp to change to Celsius');
+		temperature = fahrenheit;
+		is_celsius = false;
+	} else {
+		var celsius = (temp - 32) * 5/9;
+		$('#temp').html(celsius + " ° Celsius");
+		$('#change').html('Click on temp to change to Fahrenheit');
+		temperature = celsius;
+		is_celsius = true;
+	}
+}
 
 
 

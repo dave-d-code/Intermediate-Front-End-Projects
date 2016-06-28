@@ -32,3 +32,7 @@ JSON CALL 2 WITH METRIC
 :28},"visibility":10000,"wind":{"speed":2.1,"deg":90},"clouds":{"all":44},"dt":1467048600,"sys":{"type"
 :1,"id":5441,"message":0.0287,"country":"BG","sunrise":1466995636,"sunset":1467050471},"id":728192,"name"
 :"Obshtina Plovdiv","cod":200}
+
+to change background image of jumbotron using css
+
+$('#divID').css("background-image", "url(/myimage.jpg)");  substring to get rid of last letter.

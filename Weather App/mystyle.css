@@ -1,0 +1,14 @@
+body {
+	background: #CEE7F0;
+}
+
+#weather_bg {
+
+			background-position: center center;
+			background-size: cover;
+			height: 600px;
+		}
+
+.well {
+	margin-top: 200px;
+}
