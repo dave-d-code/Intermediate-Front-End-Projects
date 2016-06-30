@@ -7,16 +7,21 @@
 $(function() {
 	$('#submit').click(function() {
 		search_wiki($('#searchBox').val());
+		
 	});
 
-	// $('.panel').click(function() {
-	// 	console.log('i heard you');
-	// 	//$(this).find('.thisLink')[0].click();
-	// });
+	$("#searchBox").keydown(function(event) {
+		if (event.keyCode == 13) {
+    		search_wiki($('#searchBox').val());
+		}
+	});
 
 	$(document).on('click', ".panel", function() {
-        console.log('i heard you');  
+        $(this).find("a")[0].click(); 
 	});
+
+	
+
 });
 
 function search_wiki(searchTerm) {
@@ -53,10 +58,25 @@ function output_results(data) {
 		outputStr += data[2][index];
 		outputStr += '</div><div class="panel-footer"><a href="';
 		outputStr += data[3][index];
-		outputStr += '" class="thisLink" target="_blank">Go to Wiki page</a></div>';
+		outputStr += '" class="thisLink" target="_blank">To go to the Wiki page, click anywhere in the panel</a></div>';
 		$('#outputStream').append(outputStr);
+		hover_effect();
 	});
+
+
 	
+}
+
+
+function hover_effect() {
+	$('.panel').on({
+		mouseenter: function() {
+			$(this).css("border", "yellow solid 3px");
+		},
+		mouseleave: function() {
+			$(this).removeAttr('style');
+		}	
+	});
 }
 
 
