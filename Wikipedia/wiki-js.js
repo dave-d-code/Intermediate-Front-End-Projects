@@ -5,17 +5,20 @@
 
 
 $(function() {
+	// when submit is clicked, give the search value to search_wiki
 	$('#submit').click(function() {
 		search_wiki($('#searchBox').val());
 		
 	});
 
+	// when return is hit inside the search bar, submit the search value to search_wiki
 	$("#searchBox").keydown(function(event) {
 		if (event.keyCode == 13) {
     		search_wiki($('#searchBox').val());
 		}
 	});
 
+	// once the result panels are created, allow user to click anywhere inside the panel to activate the wiki <a> link.
 	$(document).on('click', ".panel", function() {
         $(this).find("a")[0].click(); 
 	});
@@ -24,6 +27,9 @@ $(function() {
 
 });
 
+
+// take value from the search bar, and do an ajax call using the wiki API. A nested array is returned from wiki
+// loop through this array and output bootstrap panels by calling output_results fun below
 function search_wiki(searchTerm) {
 
 	var output;
@@ -47,6 +53,7 @@ function search_wiki(searchTerm) {
 		
 }
 	
+// to output the json/ajax data from fun search_wiki. It will write directly to the DOM.
 function output_results(data) {
 	var outputStr;
 	$('#searchQuery').html("You searched for: <em>" + data[0] + "</em>");
@@ -60,7 +67,7 @@ function output_results(data) {
 		outputStr += data[3][index];
 		outputStr += '" class="thisLink" target="_blank">To go to the Wiki page, click anywhere in the panel</a></div>';
 		$('#outputStream').append(outputStr);
-		hover_effect();
+		hover_effect(); // add css when mouse hovers over the panels.
 	});
 
 
@@ -68,6 +75,7 @@ function output_results(data) {
 }
 
 
+// to put yellow border around each panel when the mouse hovers over it.
 function hover_effect() {
 	$('.panel').on({
 		mouseenter: function() {
