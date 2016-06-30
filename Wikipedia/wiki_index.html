@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>Wiki Viewer App</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<!-- font awesome -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<!-- my css here -->
+
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+
+<!-- codepen from here -->
+
+<div class="container">
+<div class="row text-center">
+<div class="col-md-8 col-md-offset-2">
+<h1>Dave's Wiki App</h1>
+<h3>Lets see what wiki puts out</h3>
+<input type="text" name="searchBox" id="searchBox" class="form-control"><br>
+<button type="button" id="submit" class="btn btn-lg btn-danger">Submit</button><br><br>
+
+<a href="https://en.wikipedia.org/wiki/Special:Random" class="btn btn-lg btn-warning" target="_blank">Random Wiki</a>
+</div>
+</div>
+
+<!-- this will hold the results -->
+<div class="row">
+	<div class="col-md-12">
+	<ul id="output"></ul>
+	<h2 id="searchQuery"></h2>
+	<div id="outputStream"></div>
+	</div>
+</div>
+
+
+</div>
+
+<!-- finish codepen -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<!-- my js script here -->
+<script src="wiki-js.js"></script>
+</body>
+</html>

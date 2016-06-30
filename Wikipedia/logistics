@@ -1,0 +1,33 @@
+
+
+Hint #1: Here's a URL you can use to get a random Wikipedia article:
+https://en.wikipedia.org/wiki/Special:Random
+
+Hint #2: Here's an entry on using Wikipedia's API:
+https://www.mediawiki.org/wiki/API:Main_page.
+
+: Use this link to experiment with Wikipedia's API.
+https://en.wikipedia.org/wiki/Special:ApiSandbox#action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=jsonfm
+
+codepen example:
+https://codepen.io/FreeCodeCamp/full/wGqEga/
+
+example requests.
+
+https://en.wikipedia.org/w/api.php?action=query&titles=wine&prop=revisions&rvprop=content&format=jsonfm
+
+/w/api.php?action=query&format=json&origin=file%3A%2F%2F%2FD%3A%2F2015%2520programming%2FCoding%2FFCC%2FIntermediate_front_end_projects%2FWikipedia%2Fwiki_index.html
+
+
+https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=Stack%20Overflow
+
+https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json
+
+following YT videos to help me
+https://www.youtube.com/watch?v=bFDxyGsdL4o Wikipedia API - Intro to AJAX 
+https://www.youtube.com/watch?v=nofa0Kn2KN0 (13/27) - Introduction to the Wikipedia API - TDI Project
+https://www.youtube.com/watch?v=pn5eOoJF8bw Build A WIKIPEDIA VIEWER 
+https://www.youtube.com/watch?v=7YcW25PHnAA REST API concepts and examples
+
+https://www.youtube.com/watch?v=PFrzq01h4m0 someone doing fCC tutorial
+
