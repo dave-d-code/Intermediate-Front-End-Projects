@@ -27,12 +27,13 @@ function searchTwitch () {
 	var http_string10 = "https://api.twitch.tv/kraken/channels/freecodecamp"; // this might be it to test for account status
 	var http_string11 = "https://api.twitch.tv/kraken/channels/brunofin";
 	var http_string12 = "https://api.twitch.tv/kraken/channels?channel=freecodecamp";
-
+	var http_string13 = "https://api.twitch.tv/kraken/streams?channel=ESL_SC2,OgamingSC2,cretetion,freecodecamp,";
+		http_string13 += "storbeck,habathcx,RobotCaleb,noobs2ninjas&callback=?";
 
 
 	$.ajax({
 		type : "GET",
-		url : http_string12,
+		url : http_string13,
 		async : false,
 		dataType : "json",
 		success : function(data) {
@@ -45,3 +46,5 @@ function searchTwitch () {
 	});
 
 }
+
+// console.log(output);

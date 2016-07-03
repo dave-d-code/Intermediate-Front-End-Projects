@@ -34,3 +34,6 @@ https://api.twitch.tv/kraken/streams?channel=freecodecamp,sheevergaming&callback
 get user info.. maybe a second series of json requests..
 
 https://api.twitch.tv/kraken/users/freecodecamp&callback=?
+
+not bad example:
+http://s.codepen.io/sorinr/debug/EymkWr

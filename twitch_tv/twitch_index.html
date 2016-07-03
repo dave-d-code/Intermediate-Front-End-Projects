@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Wiki Viewer App</title>
+<title>Twitch TV Viewer</title>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -37,22 +37,35 @@
 </div>
 </div>
 
+<!-- this will hold the results -->
+
+
+<div class="row">
+	<code id="outputView"></code>
+</div>
 <style>
-	#outputView{
-		height: 600px;
+	.online {
+		background: #bfff80;
+		height: 390px;
+	}
+
+	.offline {
+		background: #ff9999;
+	}
+
+	.offline img {
+		height: 180px;
+	}
+
+	.deactivated {
+		background: #a6a6a6;
+	}
+
+	.deactivated img {
+		height: 180px;
 	}
 </style>
-
-<!-- this will hold the results -->
-<div class="row">
-	<div class="col-md-12">
-	<div>
-		<code id="outputView">
-			
-		</code>
-	</div>
-	</div>
-</div>
+<div class="row" id="output2"></div>
 
 
 </div>
@@ -64,6 +77,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 <!-- my js script here -->
-<script src="twitch_js.js"></script>
+<script src="twitch_js2.js"></script>
 </body>
 </html>
