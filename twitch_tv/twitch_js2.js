@@ -1,20 +1,21 @@
 /* JQuery script to perform AJAX calls to twitch tv....
 ****** I will try to base this code (at least loosely) around the MVC model.. ******/
+/* The MVC idea was kinda working until JS's refusal to wait for AJAX returns kinda messed things up.. but still*/
 
 
 // This is the user list in an array, including the 2 dud accounts at the end.
-var userList = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404", "harry", "jon"];
+var userList = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404"];
 
 // lets not spank twitch with multiple AJAX calls, here's the http link to do it in 1 go... leave out brunofin & comster404 for now..
 
 var whoIsOnline = "https://api.twitch.tv/kraken/streams?channel=ESL_SC2,OgamingSC2,cretetion,freecodecamp,"; 
 	whoIsOnline += "storbeck,habathcx,RobotCaleb,noobs2ninjas,lirik&callback=?";
 
-	// take out lirik
 
-var outputer;
-var tbnCount = 0;  // for use later...
-var notOnlineArray;
+
+
+var tbnCount = 0;  // global variable to count no of thumbnails in each row.. to help with layout.
+var notOnlineArray; // will hold the array of who isnt online.
 
 // ***** CONTROLLER SECTION ********************
 
@@ -22,11 +23,12 @@ var notOnlineArray;
 $(function() {
 	
 	performAjax(whoIsOnline, function(data) {
-		liveView(data, 1, data.streams.length); // needs to check if anyone online???? anyoneThere?
-		notOnlineArray = notOnline(data);
+
+		liveView(data, 1, data.streams.length); // if no-one line, this will simply output nothing...
+		notOnlineArray = notOnline(data);	// work out who isn't online
 		
-		for (var i = 0; i < notOnlineArray.length; i++ ) {
-			performAjax(notOnlineArray[i], function(data2) {
+		for (var i = 0; i < notOnlineArray.length; i++ ) { // i didnt want to do multiple AJAX calls, but i cant find another way.
+			performAjax(notOnlineArray[i], function(data2) { // output the rest of offline and deactivated accounts
 			liveView(data2, 2, 1);
 			});
 		}
@@ -48,36 +50,27 @@ function performAjax(http_string, callback) {
 	$.ajax({
 		type : "GET",
 		url : http_string,
-		async : false,
+		async : true,
 		dataType : "json",
+		cache: false, // FU I.E
+		crossDomain: false, // FU I.E 
 		success : function(data, status, xhr) {
 			callback(data);
 			
 		},
 		error : function(error) {
-			var outputerstr = $.parseJSON(error.responseText);
-			liveView(outputerstr, 3, 1);
+			liveView(error.responseJSON, 3, 1);	
 		}
 	});
 
 	
 }
 
-// check that the initial livestream data call doesnt return an emtpy array
-// ie no one online
-function anyoneThere(data) {
-	if (data.streams.length > 0) {
-		return true;
-	} else {
-		return false;
-	}
-}
+
 
 // produce an array of those not online, and give me back the links to cycle through...
-// #TODO there is a bug here, where i am losing the last element of the array.
-// #TODO even more bizarrely, i cant alter i < data.streams.length, as i then lose
-// the scope of the data.streams[i].channel.display_name variables....
-// this could cause me to start hating JS.
+// #TODO keep an eye on this function. buggy one day, working fine the next???
+// #TODO was previously missing out the last element on the array..
 
 function notOnline (data){
 	var notOnline = userList;
@@ -98,7 +91,7 @@ function notOnline (data){
 
 // ******************* VIEW SECTION **************************
 
-// punch out HTML and append it to the DOM for livestreams
+// punch out HTML and append it to the DOM for livestreams and other accounts.
 function liveView (data, isOnline, outputCount) {
 	var output = '';
 	var outputImage, outputName, outputGame, outputStatus, outputUrl, onlineStatus;
@@ -127,8 +120,8 @@ function liveView (data, isOnline, outputCount) {
 			case 3: // is deactivated
 				onlineStatus = 'deactivated';
 				outputImage = 'https://pbs.twimg.com/profile_images/528573622349484032/xvmxB3Kd_400x400.jpeg';
-				outputName = ''; 
-				outputGame = data.message; 
+				outputName = '';
+				outputGame = data.message;
 				outputStatus = '';
 				outputUrl = '';
 				break;
@@ -142,7 +135,7 @@ function liveView (data, isOnline, outputCount) {
 		output += '<p class="text-center"><a href="' + outputUrl + '" class="btn btn-primary" role="button">'; // their link
 		output += outputName + ' on Twitch</a></p></div></div></div>';
 
-		tbnCount++ // to keep track of the no. of thumbnails i am producing. bit naughty for a fun to be altering a global, but hey.
+		tbnCount++ // to keep track of the no. of thumbnails i am producing. bit naughty for a function to be altering a global, but hey.
 		if ((tbnCount % 4) == 0) { // 4 thumbails per row, if over, i want another div.row
 			output += '<div><div class="row">';
 		}
